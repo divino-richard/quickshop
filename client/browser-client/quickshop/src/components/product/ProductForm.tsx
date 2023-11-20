@@ -49,25 +49,27 @@ function ProductForm(props: Props) {
                         onChange={(event) => setDescription(event.target.value)}    
                     />
                 </Box>
-                <Box className='mt-2'>
-                    <TextField 
-                        id="outlined-multiline-flexible" 
-                        label="price"
-                        className='w-full' 
-                        placeholder='price'
-                        type='number'
-                        onChange={(event) => setPrice(Number(event.target.value))}    
-                    />
-                </Box>
-                <Box className='mt-2'>
-                    <TextField 
-                        id="outlined-multiline-flexible" 
-                        label="quantity in stock"
-                        className='w-full' 
-                        placeholder='quantity in stock'
-                        type='number'
-                        onChange={(event) => setQuantityInStock(Number(event.target.value))}    
-                    />
+                <Box className='mt-2 flex items-center'>
+                    <Box className='mr-1 w-1/2'>
+                        <TextField 
+                            id="outlined-multiline-flexible" 
+                            label="price"
+                            className='w-full' 
+                            placeholder='price'
+                            type='number'
+                            onChange={(event) => setPrice(Number(event.target.value))}    
+                        />
+                    </Box>
+                    <Box className='ml-1 w-1/2'>
+                        <TextField 
+                            id="outlined-multiline-flexible" 
+                            label="quantity in stock"
+                            className='w-full' 
+                            placeholder='quantity in stock'
+                            type='number'
+                            onChange={(event) => setQuantityInStock(Number(event.target.value))}    
+                        />
+                    </Box>
                 </Box>
             </Box>
             <Box className='flex justify-end py-2'>

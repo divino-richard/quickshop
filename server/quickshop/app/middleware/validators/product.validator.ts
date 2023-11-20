@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { body, validationResult } from "express-validator";
+import fs from 'fs';
 
 export const productValidator = [
     body('title')
@@ -18,10 +19,22 @@ export const productValidator = [
         .isNumeric().withMessage('Stock quantity must be numeric'),
     function (req: Request, res: Response, next: NextFunction) {
         const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({
-                    error: {message: errors.array()[0].msg}
-                });
+        if (!errors.isEmpty()) {
+            if (req.files) {
+                const productFiles = req.files as Express.Multer.File[]; 
+                productFiles.forEach((file: Express.Multer.File) => {
+                    fs.unlink(file.path, (error) => {
+                        if(error) {
+                            console.log('Error file deletion: ', error);
+                        }
+                        console.log('File deleted: ');
+                    });
+                }) 
+            } 
+
+            return res.status(400).json({
+                error: {message: errors.array()[0].msg}
+            });
         }
         next();
     }

@@ -1,11 +1,12 @@
-import mongoose, { SchemaType, mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-    userId:[
-        {type: Schema.Types.ObjectId, ref: 'Users'}
-    ],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'Users'
+    },
     title: {
         require: true,
         type: String,
@@ -22,6 +23,10 @@ const productSchema = new Schema({
         require: true,
         type: Number,
     },
+    images: [{
+        required: true,
+        type: String,
+    }]
 }, {timestamps: true});
 
 export const ProductModel = mongoose.model('Products', productSchema);
