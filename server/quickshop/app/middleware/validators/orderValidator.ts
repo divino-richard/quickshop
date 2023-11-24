@@ -19,9 +19,71 @@ export const orderValidator = [
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
-                error: {message: errors.array()[0].msg}
+                error: {
+                    message: errors.array()[0].msg
+                }
             });
         }
         next();
     }
+]
+
+export const updateStatusValidator = [
+    body('orderId')
+        .notEmpty().withMessage('Please provide order id')
+        .isMongoId().withMessage('Invalid order id'),
+    body('orderStatus')
+        .notEmpty().withMessage('Order status should not be empty')
+        .isString().withMessage('Invalid order status'),
+
+    function (req: Request, res: Response, next: NextFunction) {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            return res.status(400).json({
+                error: {
+                    message: errors.array()[0].msg
+                }
+            })
+        }
+        next();
+    }
+]
+
+export const updateOrderPaymentValidator = [
+    body('orderId')
+        .notEmpty().withMessage('Please provide order id')
+        .isMongoId().withMessage('Invalid order id'),
+    body('paymentStatus')
+        .notEmpty().withMessage('Payment status should not be empty')
+        .isString().withMessage('Invalid payment status'),
+
+    function (req: Request, res: Response, next: NextFunction) {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            return res.status(400).json({
+                error: {
+                    message: errors.array()[0].msg
+                }
+            })
+        }
+        next();
+    }
+]
+
+export const cancelOrderValidator = [
+    body('orderId')
+        .notEmpty().withMessage('Please provide an order id to be cancelled')
+        .isMongoId().withMessage('Invalid order id'),
+    
+        function(req: Request, res: Response, next: NextFunction) {
+            const errors = validationResult(req);
+            if(!errors.isEmpty()) {
+                return res.status(400).json({
+                    error: {
+                        message: errors.array()[0].msg
+                    }
+                })
+            }
+            next();
+        }
 ]
