@@ -49,7 +49,63 @@ const order = {
                 error: {message: "Something went wrong. Please try again later"}
             })
         }
-    }
+    },
+    getAll: async(req: Request, res: Response) => {
+        try {
+            const userId = req.jwt_payload?._id;
+            const userRole = req.jwt_payload?.role;
+            const {_limit, _offset} = req.params;
+            let orders: any[] = [];
+
+            const limit = Number(_limit);
+            const offset = Number(_offset);
+
+            if(userRole === 'ADMIN' || 'SELLER') {
+                orders = await OrderModel.find({
+                    'orderItems': {
+                        $elemMatch: {
+                            'product.seller': userId
+                        }
+                    }
+                })
+                .populate('orderItems.product')
+                .limit(limit).skip(offset);
+
+            } else if(userRole === 'SELLER') {
+                orders = await OrderModel.find({
+                    'customer': userId
+                })
+                .populate('orderItems.product')
+                .limit(limit).skip(offset);
+            }
+           
+            res.status(200).send(orders);
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send({error});
+        }
+    },
+    getCustomerOrdersByStatus: async(req: Request, res: Response, status: string) => {
+        try {
+            const userId = req.jwt_payload?._id;
+            const {_limit, _offset} = req.params;
+
+            const limit = Number(_limit);
+            const offset = Number(_offset);
+
+            const orders = await OrderModel.find()
+                            .where({orderStatus: status})
+                            .populate('orderItems.product')
+                            .limit(limit).skip(offset);
+            res.status(200).send(orders);
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send({error});
+        }
+    },
+
 } 
 
 export default order;

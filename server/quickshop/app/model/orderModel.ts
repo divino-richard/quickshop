@@ -24,7 +24,7 @@ const orderSchema = new Schema({
     }],
     orderStatus: {
         type: String,
-        enum: ['pending', 'shipped', 'delivered', 'cancelled'],
+        enum: ['pending', 'shipped', 'delivered'],
         default: 'pending',
     },
     paymentStatus: {

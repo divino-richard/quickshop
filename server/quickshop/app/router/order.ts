@@ -13,4 +13,10 @@ router.post('/',
     order.create(req, res);
 });
 
+router.get('/', 
+    authorization(['ADMIN', 'SELLER', 'CUSTOMER']),
+    (req: Request, res: Response) => {
+    order.getAll(req, res);
+})
+
 export default router;

@@ -6,7 +6,7 @@ function Banner() {
         <div className='flex flex-1 items-center'>
             <img className='w-full' src="/banner.jpg" alt='banner'/>
         </div>
-    )
+    );
 }
 
 export default Banner
