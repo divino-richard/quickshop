@@ -4,6 +4,8 @@ import { authorization } from '../middleware/authMiddleware';
 import { productValidator } from '../middleware/validators/product.validator';
 import product from '../controller/product.controller';
 import {ROOT_DIR} from '../../server';
+import customerReview from '../controller/customerReview.controller';
+
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -20,18 +22,27 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-router.get('/all/:_limits/:_offset', (req: Request, res: Response) => {
+router.get('/all/:_limits/:_offset',
+    (req: Request, res: Response) => {
     product.getAll(req, res);
 });
+
 router.get('/all/:userId',
     authorization(['SELLER', 'ADMIN']),
     (req: Request, res: Response) => {
 
     product.getAllByUserId(req, res);
 });
+
 router.get('/:_id', (req: Request, res: Response) => {
     product.getById(req, res);
 });
+
+router.get('/review/:id',
+    (req: Request, res: Response) => {
+    customerReview.getAllByProductId(req, res);
+});
+
 router.post('/',
     authorization(['SELLER', 'ADMIN']),
     upload.array('product_images', 1),
@@ -40,6 +51,7 @@ router.post('/',
 
     product.create(req, res);
 });
+
 router.put('/:id',
     authorization(['SELLER', 'ADMIN']),
     upload.array('product_images', 1),
@@ -48,6 +60,7 @@ router.put('/:id',
 
     product.update(req, res);
 });
+
 router.delete('/:id', 
     authorization(['SELLER', 'ADMIN']),
     (req: Request, res: Response) => {

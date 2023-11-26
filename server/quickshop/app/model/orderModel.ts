@@ -5,25 +5,27 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema({
     seller: {
         type: Schema.Types.ObjectId,
+        require: true,
         ref: 'Users'
     },
     customer: {
         type: Schema.Types.ObjectId,
+        require: true,
         ref: 'Users'
     },
     orderItems: [{
         product: {
             type: Schema.Types.ObjectId,
             ref: 'Products',
-            required: true,
+            require: true,
         },
         quantity: {
             type: Number,
-            required: true,
+            require: true,
         },
         subTotalAmount: {
             type: Number,
-            required: true,
+            require: true,
         },
     }],
     orderStatus: {
@@ -39,15 +41,15 @@ const orderSchema = new Schema({
     paymentMethod: {
         type: String,
         enum: ['cod', 'paypal', 'gcash', 'visa'],
-        required: true,
+        require: true,
     },
     totalAmount: {
         type: Number,
-        required: true,
+        require: true,
     },
     shippingFee: {
         type: Number,
-        required: true,
+        require: true,
     },
 }, {timestamps: true});
 

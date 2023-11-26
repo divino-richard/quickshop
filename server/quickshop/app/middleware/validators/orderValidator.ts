@@ -87,3 +87,21 @@ export const cancelOrderValidator = [
             next();
         }
 ]
+
+export const orderStatusValidator = [
+    body('orderStatus')
+        .notEmpty().withMessage('Please provide an order status')
+        .isString().withMessage('Invalid type for order status'),
+    
+    function(req: Request, res: Response, next: NextFunction) {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            return res.status(400).json({
+                error: {
+                    message: errors.array()[0].msg
+                }
+            })
+        }
+        next();
+    }
+]

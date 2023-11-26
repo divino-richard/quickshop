@@ -1,13 +1,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import { dbConnect } from './app/config/db';
+import cors, { CorsOptions } from 'cors';
+import path from 'path';
 import productRouter from './app/router/product';
 import authRouter from './app/router/auth';
 import userRouter from './app/router/user';
 import cartRouter from './app/router/cart';
 import orderRouter from './app/router/order';
-import { dbConnect } from './app/config/db';
-import cors, { CorsOptions } from 'cors';
-import path from 'path';
+import customerReviewRouter from './app/router/customerReveiw';
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -29,6 +30,7 @@ app.use('/user', userRouter);
 app.use('/product', productRouter);
 app.use('/cart', cartRouter);
 app.use('/order', orderRouter);
+app.use('/customer-review', customerReviewRouter);
 
 app.use('/uploads/products', express.static(path.join(__dirname, 'uploads/products')))
 

@@ -80,7 +80,56 @@ const order = {
                     .skip(offset);
 
             } else if(userRole === 'CUSTOMER') {
-                orders = await OrderModel.find({ customer: userId })
+                orders = await OrderModel.find({
+                        customer: userId
+                    })
+                    .populate('orderItems.product')
+                    .limit(limit)
+                    .skip(offset);
+            }
+           
+            res.status(200).send({
+                orders,
+            });
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send({error});
+        }
+    },
+    getByStatus: async(req: Request, res: Response) => {
+        try {
+            const userId = req.jwt_payload?._id;
+            const userRole = req.jwt_payload?.role;
+            const {_limit, _offset} = req.params;
+            const {orderStatus} = req.body;
+            let orders: any[] = [];
+
+            const limit = Number(_limit);
+            const offset = Number(_offset);
+
+            if (limit < 0 || offset < 0) {
+                return res.status(400).send({
+                    error: {
+                        message: 'Invalid parameters'
+                    }
+                });
+            }
+
+            if(userRole === 'ADMIN' || userRole === 'SELLER') {
+                orders = await OrderModel.find({
+                        seller: userId,
+                        orderStatus
+                    })
+                    .populate('orderItems.product')
+                    .limit(limit)
+                    .skip(offset);
+
+            } else if(userRole === 'CUSTOMER') {
+                orders = await OrderModel.find({
+                        customer: userId,
+                        orderStatus,
+                    })
                     .populate('orderItems.product')
                     .limit(limit)
                     .skip(offset);

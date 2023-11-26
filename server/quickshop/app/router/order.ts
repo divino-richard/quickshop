@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { authorization } from "../middleware/authMiddleware";
-import { cancelOrderValidator, orderValidator, updateOrderPaymentValidator, updateStatusValidator } from "../middleware/validators/orderValidator";
+import { cancelOrderValidator, orderStatusValidator, orderValidator, updateOrderPaymentValidator, updateStatusValidator } from "../middleware/validators/orderValidator";
 import order from "../controller/order.controller";
 
 const router = express.Router();
@@ -19,6 +19,14 @@ router.get('/:_limit/:_offset',
 
     order.getAll(req, res);
 });
+
+router.get('/status',
+    authorization(['ADMIN', 'CUSTOMER', 'SELLER']),
+    orderStatusValidator,
+    (req: Request, res: Response) => {
+    
+    order.getByStatus(req, res);
+})
 
 router.put('/status',
     authorization(['ADMIN', 'SELLER']),
