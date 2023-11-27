@@ -1,11 +1,13 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
+import { SplashScreen, Stack, router } from 'expo-router';
 import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+import { ImageSourcePropType, useColorScheme } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from '../redux/store';
+import Colors from '../constants/Colors';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -53,6 +55,29 @@ function RootLayoutNav() {
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="account" options={{ title: "Account", presentation: 'modal'}} />
+          <Stack.Screen 
+            name="product/[id]" 
+            options={{
+              title: "Product Details",
+              headerStyle: {
+                backgroundColor: Colors.secondary_first,
+              },
+              headerTitleStyle: {
+                color: Colors.primary,
+              },
+              headerLeft: () => {
+                return (
+                  <AntDesign 
+                    size={25} 
+                    style={{paddingRight: 25}} 
+                    color={Colors.accent} 
+                    name='back'
+                    onPress={() => router.back()}
+                  />
+                )
+              }
+            }}
+          />
         </Stack>
       </ThemeProvider>
     </Provider>

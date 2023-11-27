@@ -6,6 +6,7 @@ import Colors from '../../constants/Colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Product } from '../../types/product.types';
 import { API_END_POINT } from '../../constants/Services';
+import { Link, router } from 'expo-router';
 
 interface Props {
     data: Product;
@@ -25,7 +26,7 @@ function ProductCard(props: Props) {
                     borderRadius: 5
                 }}
             >
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => router.push(`/product/${data._id}`)}>
                     <Image 
                         style={styles.productImage}
                         source={{uri: productImages}} 

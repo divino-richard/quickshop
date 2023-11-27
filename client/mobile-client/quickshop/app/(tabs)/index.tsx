@@ -9,8 +9,8 @@ import { useEffect } from 'react';
 import { getProducts } from '../../services/product.services';
 import { AxiosError, AxiosResponse } from 'axios';
 import { 
-  getProductSuccess, 
-  getProductFailed, 
+  getProductsSuccess, 
+  getProductsFailed, 
   setLoading 
 } from '../../redux/slice/product/getProducts.slice';
 import { Product } from '../../types/product.types';
@@ -25,11 +25,11 @@ export default function TabOneScreen() {
       .then((result: AxiosResponse)  => {
         if(result.data.products) {
           const products: Product[] = result.data.products;
-          dispatch(getProductSuccess(products));
+          dispatch(getProductsSuccess(products));
         }
       })
       .catch((error: AxiosError) => {
-        dispatch(getProductFailed(error.message));
+        dispatch(getProductsFailed(error.message));
       })
       .finally(() => {
         dispatch(setLoading(false));

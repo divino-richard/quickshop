@@ -11,3 +11,14 @@ export function getProducts() {
         }
     });
 }
+
+export function getProduct(productId: string) {
+    return new Promise<AxiosResponse>(async(resolve, reject) => {
+        try {
+            const result = await apiClient.get(`/product/${productId}`);
+            resolve(result);
+        } catch(error) {
+            reject(error);
+        }
+    });
+}

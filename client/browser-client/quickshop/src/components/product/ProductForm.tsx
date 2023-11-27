@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../services/product';
 import { AppDispatch } from '../../redux/store';
+import { Product } from '../../types/poduct.type';
 
 interface Props {}
 
@@ -16,7 +17,8 @@ function ProductForm(props: Props) {
     const [quantityInStock, setQuantityInStock] = useState(0);
 
     const handleSubmitProduct = () => {
-        const productData = {title, description, price, quantityInStock}
+        const images = null;
+        const productData: Product = {title, description, price, quantityInStock, images}
         addProduct(productData)
             .then((response: any) => {
                 // dispatch();
