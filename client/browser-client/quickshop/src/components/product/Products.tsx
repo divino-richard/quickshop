@@ -52,7 +52,7 @@ function Products(props: Props) {
 
     return (
         <div className='w-ful pb-5'>
-            <div className='border-t-2 border-rose-500 bg-white p-3'>
+            <div className='border-t-2 border-amber-500 bg-white p-3'>
                 <h1 className='text-gray-500 font-semibold text-center'>Products</h1>
             </div>
             <div className='py-2 flex flex-wrap'>

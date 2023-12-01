@@ -36,7 +36,7 @@ function TopBrands(props: Props) {
     ]
 
     return (
-        <div className='w-full bg-white p-2 mt-5 border-t-2 border-rose-500'>
+        <div className='w-full bg-white p-2 mt-5 border-t-2 border-amber-500'>
             <h1 className='pb-2 text-gray-500 font-semibold'>Top Brands</h1>
             <Divider />
             <div className='flex items-center mt-2'>

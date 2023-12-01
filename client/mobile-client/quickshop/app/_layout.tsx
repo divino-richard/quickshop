@@ -53,14 +53,55 @@ function RootLayoutNav() {
     <Provider store={store}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="account" options={{ title: "Account", presentation: 'modal'}} />
+          <Stack.Screen 
+            name="(tabs)" 
+            options={{ 
+              headerShown: false 
+            }} 
+          />
+          <Stack.Screen 
+            name="account" 
+            options={{ 
+              title: "Account", 
+              presentation: 'modal'
+            }} 
+          />
           <Stack.Screen 
             name="product/[id]" 
             options={{
               title: "Product Details",
               headerStyle: {
                 backgroundColor: Colors.secondary_first,
+              },
+              headerTitleStyle: {
+                color: Colors.primary,
+              },
+              headerLeft: () => {
+                return (
+                  <AntDesign 
+                    size={25} 
+                    style={{paddingRight: 25}} 
+                    color={Colors.accent} 
+                    name='back'
+                    onPress={() => router.back()}
+                  />
+                )
+              }
+            }}
+          />
+          <Stack.Screen 
+            name="product/search" 
+            options={{
+              headerShown: false,
+              presentation: 'modal'
+            }}
+          />
+          <Stack.Screen 
+            name="auth/login" 
+            options={{
+              title: 'Login',
+              headerStyle: {
+                backgroundColor: Colors.secondary_first
               },
               headerTitleStyle: {
                 color: Colors.primary,

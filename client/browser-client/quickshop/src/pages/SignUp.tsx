@@ -25,7 +25,7 @@ function SignUp(props: Props) {
     }
     
     return (
-        <div className='flex items-center justify-center min-h-screen'>
+        <div className='mt-20 flex justify-center min-h-screen'>
             <form className="w-72 flex flex-col" onSubmit={handleSubmit}>
                 <h1 className='font-bold font-xl text-gray-600'>Sign In Account:</h1>
                 <Input placeholder='firstname'/>
@@ -35,7 +35,7 @@ function SignUp(props: Props) {
                 <Input placeholder='confirm password'/>
                 <input 
                     type='submit'
-                    className="text-center bg-rose-500 text-white p-2 rounded-md font-semibold mt-5  cursor-pointer" 
+                    className="text-center bg-amber-500 text-white p-2 rounded-md font-semibold mt-5  cursor-pointer" 
                     value='SignUp'
                 />
             </form>

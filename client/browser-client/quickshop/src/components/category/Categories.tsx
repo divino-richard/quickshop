@@ -1,11 +1,7 @@
 import React from 'react'
 import CategoryItem from './CategoryItem';
 import Divider from '../general/Divider';
-
-export interface Category {
-    title: string;
-    description: string;
-}
+import { Category } from '../../types/category.types';
 
 function Categories() {
     const categories: Category[] = [
@@ -31,7 +27,7 @@ function Categories() {
         },
     ]
     return (
-        <div className='ml-5 p-2 h-96 w-1/3 bg-white border-t-2 border-rose-500'>
+        <div className='ml-5 p-2 h-96 w-1/3 bg-white border-t-2 border-amber-500'>
             <h1 className='text-gray-500 mb-2 font-semibold'>Categories</h1>
             <Divider />
             <div className='mt-2'>

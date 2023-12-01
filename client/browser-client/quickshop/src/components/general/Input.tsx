@@ -13,7 +13,7 @@ function Input(props: Props) {
         <div>
             <input 
                 type={type}
-                className="w-full mt-3 p-2 rounded-md bg-slate-200 outline-rose-300" 
+                className="w-full mt-3 p-2 rounded-md bg-slate-200 outline-sky-950" 
                 placeholder={placeholder}
                 onChange={onChange}
             />

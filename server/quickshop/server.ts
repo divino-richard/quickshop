@@ -8,6 +8,7 @@ import authRouter from './app/router/auth';
 import userRouter from './app/router/user';
 import cartRouter from './app/router/cart';
 import orderRouter from './app/router/order';
+import categoryRouter from './app/router/category';
 import customerReviewRouter from './app/router/customerReveiw';
 
 const PORT = process.env.PORT || 5000;
@@ -30,6 +31,7 @@ app.use('/user', userRouter);
 app.use('/product', productRouter);
 app.use('/cart', cartRouter);
 app.use('/order', orderRouter);
+app.use('/category', categoryRouter);
 app.use('/customer-review', customerReviewRouter);
 
 app.use('/uploads/products', express.static(path.join(__dirname, 'uploads/products')))

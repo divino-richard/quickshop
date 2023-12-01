@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../general/Logo'
-import HeaderNav from './HeaderNav'
+import AuthNav from './AuthNav'
 import HeaderAccount from './HeaderAccount'
 import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
@@ -13,11 +13,11 @@ function Header(props: Props) {
     const authState = useSelector((state: RootState) => state.authentication);
 
     return (
-        <div className='px-5 py-2 flex items-center justify-between bg-white'>
+        <div className='px-5 py-2 flex items-center justify-between bg-sky-950'>
             <Logo />
             {authState.session.token
                 ? <HeaderAccount />
-                : <HeaderNav />
+                : <AuthNav />
             }
         </div>
     )

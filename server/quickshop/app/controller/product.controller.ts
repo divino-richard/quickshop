@@ -91,6 +91,22 @@ const product = {
             });
         }
     },
+    search: async(req: Request, res: Response) => {
+        try {
+            const {_like} = req.params;
+            const products = await ProductModel.find({
+                $or: [{
+                    title: {$regex: _like}
+                }]
+            });
+            return res.status(200).send({products})
+        } catch(error) {
+            console.error("Error fetching product:", error);
+            return res.status(500).send({
+                error: {message: "Something went wrong. Please try again later"}
+            });
+        }
+    },
     update: async (req: Request, res: Response) => {
         try {
             const {id} = req.params;

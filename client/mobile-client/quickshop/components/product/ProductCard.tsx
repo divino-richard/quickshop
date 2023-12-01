@@ -7,6 +7,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Product } from '../../types/product.types';
 import { API_END_POINT } from '../../constants/Services';
 import { Link, router } from 'expo-router';
+import { cartServices } from '../../services/cart.services';
 
 interface Props {
     data: Product;
@@ -15,6 +16,20 @@ interface Props {
 function ProductCard(props: Props) {
     const {data} = props;
     const productImages = `${API_END_POINT}/uploads/products/${data.images[0]}`;
+
+    const handleAddCart = () => {
+        if(data._id) {
+            cartServices.add(data._id, 1)
+                .then(response => {
+                    console.log("Reponse ", response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else {
+            console.log('Failed to add cart');
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -61,6 +76,7 @@ function ProductCard(props: Props) {
                                 ...styles.addCart,
                                 ...styles.flexRow
                             }}
+                            onPress={handleAddCart}
                         >
                             <Feather
                                 style={{

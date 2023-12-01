@@ -38,6 +38,10 @@ router.get('/:_id', (req: Request, res: Response) => {
     product.getById(req, res);
 });
 
+router.get('/search/:_like', (req: Request, res: Response) => {
+    product.search(req, res);
+})
+
 router.get('/review/:id',
     (req: Request, res: Response) => {
     customerReview.getAllByProductId(req, res);

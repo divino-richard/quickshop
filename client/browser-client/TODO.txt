@@ -1,0 +1,13 @@
+Milestone
+--------------------------
+Admin Read, Create, Edit, Delete Category
+
+Product CRUD functionality
+    - User can input product details and upload product images
+    - User can edit product info
+    - User can edit product 
+    - User can delete product
+
+
+Wish List
+--------------------------

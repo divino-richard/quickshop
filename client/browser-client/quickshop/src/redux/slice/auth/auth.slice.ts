@@ -35,7 +35,7 @@ const authSlice = createSlice({
     authenticationFailed(state: AuthState, action: PayloadAction<string>) {
       state.error.message = action.payload;
     },
-    userLoggedOut(state: AuthState, action: PayloadAction<null>) {
+    userLoggedOut(state: AuthState) {
       state.session.data = null;
       state.session.token = null;
     },

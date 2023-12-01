@@ -9,6 +9,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import Product from "./pages/UserProduct";
+import Category from "./pages/Category";
 
 interface PrivateRouteProps {
   element: JSX.Element;
@@ -37,6 +38,7 @@ function App() {
           <Route path="signin" element={<SignIn />}/>
           <Route path="signup" element={<SignUp />}/>
         </Route>
+
         <Route path="/admin">
           <Route 
             index 
@@ -50,7 +52,14 @@ function App() {
               <PrivateRoute element={<Product />} roles={['ADMIN']} />
             }
           />
+          <Route 
+            path="category"
+            element={
+              <PrivateRoute element={<Category />} roles={['ADMIN']} />
+            }
+          />
         </Route>
+
         <Route path="/seller">
           <Route 
             index 

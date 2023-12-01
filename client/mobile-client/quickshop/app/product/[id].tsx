@@ -16,11 +16,13 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { API_END_POINT } from '../../constants/Services';
 import Colors from '../../constants/Colors';
 import { Feather, AntDesign } from '@expo/vector-icons';
+import ProductCard from '../../components/product/ProductCard';
 
 function ProductDetails() {
     const params = useLocalSearchParams<{id: string}>();
     const dispatch = useDispatch<AppDispatch>();
     const {product, error, loading} = useSelector((state: RootState) => state.getProduct);
+    const {products, } = useSelector((state: RootState) => state.getProducts);
     
     useEffect(() => {
         dispatch(getProductLoading(true));
@@ -107,7 +109,14 @@ function ProductDetails() {
                     <Text style={styles.productDescription}>{product?.description}</Text>
                 </View>
             </View>
-
+            <View>
+                <Text style={styles.suggestionsTitle}>Product Suggestions</Text>
+                <View style={styles.productSuggestions}>
+                    {products.map((product: Product) => (
+                        <ProductCard key={product._id} data={product}/>
+                    ))}
+                </View>
+            </View>
         </ScrollView>
     );
 }
@@ -169,6 +178,17 @@ const styles = StyleSheet.create({
         color: Colors.primary,
         fontSize: 15,
         fontWeight: '600',
+    },
+    suggestionsTitle: {
+        marginTop: 10,
+        paddingHorizontal:10,
+        fontSize: 15,
+        fontWeight: '600',
+    },
+    productSuggestions: {
+        padding: 5,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
     }
 })
 

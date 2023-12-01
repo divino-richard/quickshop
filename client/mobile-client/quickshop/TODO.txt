@@ -1,10 +1,10 @@
 
 Milestone
 ----------------------------
-- Product Details Tab
+[DONE]- Product Details Tab
     - Create a product datails tab
     - Upon cliking a single product from product list, it should redirect to the product details tab
-- Search Product
+[DONE]- Search Product
     - User can search product
     - Upon typing to the search bar, the app should suggest product realted to searcg term.
     - Upon clinking the search result, it should be redirected to the product  tab

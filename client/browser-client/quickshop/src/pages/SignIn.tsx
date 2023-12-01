@@ -44,10 +44,10 @@ function SignIn() {
     }
 
     return (
-       <div className='flex items-center justify-center min-h-screen'>
-            <form method="post" className="w-72 flex flex-col" onSubmit={handleSubmit}>
+       <div className='flex justify-center min-h-screen bg-white'>
+            <form method="post" className="mt-20 w-72 flex flex-col" onSubmit={handleSubmit}>
                 <h1 className='mb-2 font-bold font-xl text-gray-600'>Sign In Account:</h1>
-                <p className='text-red-500'>{error}</p>
+                <p className='text-red-600'>{error}</p>
                 <Input 
                     placeholder='email' 
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
@@ -60,7 +60,7 @@ function SignIn() {
                 <input
                     disabled={loading ? true : false}
                     type='submit'
-                    className={`text-center bg-rose-500 text-white p-2 rounded-md font-semibold mt-5  ${loading ? 'cursor-not-allowed' : 'cursor-pointer'}`} 
+                    className={`text-center bg-amber-500 text-white p-2 rounded-md font-semibold mt-5  ${loading ? 'cursor-not-allowed' : 'cursor-pointer'}`} 
                     value={loading ? 'Please wait...' : 'SignIn'}
                 />
             </form>

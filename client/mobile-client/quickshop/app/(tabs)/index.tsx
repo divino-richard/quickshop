@@ -14,8 +14,10 @@ import {
   setLoading 
 } from '../../redux/slice/product/getProducts.slice';
 import { Product } from '../../types/product.types';
+import SearchProduct from '../../components/product/SearchProduct';
+import Empty from '../../components/Empty';
 
-export default function TabOneScreen() {
+export default function HomeScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const {products, error, loading} = useSelector((state: RootState) => state.getProducts);
    
@@ -40,13 +42,18 @@ export default function TabOneScreen() {
     <View style={styles.container}>
       <StatusBar style="light" />
       <View style={styles.header}>
-        <View style={styles.searchBar}>
-          <TextInput style={styles.searchInput} placeholder='Search product'/>
-          <Feather size={25} name='search' color={Colors.secondary_first}/>
-        </View>
+        <SearchProduct />
         <View style={styles.headerActions}>
-          <Feather style={styles.actionIcon} size={25} name='shopping-cart'/>
-          <Feather style={styles.actionIcon} size={25} name='bell'/>
+          <Feather 
+            style={styles.actionIcon} 
+            size={25} 
+            name='shopping-cart'
+          />
+          <Feather 
+            style={styles.actionIcon} 
+            size={25} 
+            name='bell'
+          />
         </View>
       </View>
       <ScrollView contentContainerStyle={styles.productList} >
@@ -58,7 +65,7 @@ export default function TabOneScreen() {
               ))
             )
             : (
-              <Text>Empty</Text>
+              <Empty info='Empty Products'/>
             )
         }
       </ScrollView>
@@ -71,7 +78,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingTop: 45,
+    prosition: 'relative',
+    zIndex: 1,
+    paddingTop: 50,
     paddingBottom: 25,
     paddingHorizontal: 10,
     flexDirection: 'row',
@@ -79,23 +88,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.secondary_first,
   },
-  searchBar: {
-    flex: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    borderRadius: 5,
-    borderWidth: 1,
-    backgroundColor: Colors.primary,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 18
-  },
   headerActions: {
-    flex: 1,
     flexDirection: 'row',
     marginLeft: 10, 
     backgroundColor: Colors.secondary_first,

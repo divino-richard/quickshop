@@ -23,7 +23,7 @@ function ProductCard (props: Props) {
             <div className='py-2 h-full flex flex-col justify-between'>
                 <h1>{product.title}</h1>
                 <span 
-                    className='font-bold text-lg text-rose-500'
+                    className='font-bold text-lg text-amber-500'
                 >
                     ₱ {product.price.toLocaleString()}
                 </span>

@@ -22,3 +22,14 @@ export function getProduct(productId: string) {
         }
     });
 }
+
+export function searchProduct(searchTerm: string) {
+    return new Promise<AxiosResponse>(async(resolve, reject) => {
+        try {
+            const result = await apiClient.get(`/product/search/${searchTerm}`);
+            resolve(result);
+        } catch(error) {
+            reject(error);
+        }
+    });
+}

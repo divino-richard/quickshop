@@ -8,7 +8,7 @@ function Logo(props: Props) {
     const navigate = useNavigate();
     return (
         <div className='cursor-pointer' onClick={() => navigate('/')}>
-            <h1 className='font-bold text-lg text-rose-500'>QuickShop</h1>
+            <h1 className='font-bold text-lg text-amber-500'>QuickShop</h1>
         </div>
     )
 }

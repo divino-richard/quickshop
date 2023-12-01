@@ -16,7 +16,7 @@ function HeaderAccount() {
 
     const handleLogout = () => {
         localStorage.removeItem('user');
-        dispatch(userLoggedOut(null));
+        dispatch(userLoggedOut());
     } 
 
     return (
@@ -29,7 +29,7 @@ function HeaderAccount() {
                     {fullName[0]}
                 </h1>
             </div>
-            <div className={`${showDropDown ? 'block' : 'hidden'} absolute bg-white px-5 py-3 right-5 w-52 mt-1 rounded-md shadow-md shadow-gray-300 text-gray-600`}>
+            <div className={`${showDropDown ? 'block' : 'hidden'} absolute z-10 bg-white px-5 py-3 right-5 w-52 mt-1 rounded-md shadow-md shadow-gray-300 text-gray-600`}>
                 <h1 className='mb-2 font-bold'>Acount:</h1>
                 <Divider />
                 <div className='mt-2'>

@@ -1,5 +1,9 @@
-import axios, { InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { UserSession } from "../types/userTypes";
+import {store} from '../redux/store';
+import { userLoggedOut } from "../redux/slice/auth/auth.slice";
+
+const UNAUTHORIZED = 401;
 
 const apiClient = axios.create();
 
@@ -17,6 +21,16 @@ apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     config.headers['Authorization'] = `Bearer ${userSessionJSON?.token}`;
 
     return config;
-})
+});
+
+apiClient.interceptors.response.use((response) => {
+    return response;
+}, (error: AxiosError) => {
+    if(error.response?.status === UNAUTHORIZED) {
+        localStorage.removeItem('user');
+        store.dispatch(userLoggedOut());
+    }
+    return Promise.reject(error);
+});
 
 export default apiClient
