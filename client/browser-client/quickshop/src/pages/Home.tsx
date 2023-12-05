@@ -2,13 +2,9 @@ import React from 'react'
 import Banner from '../components/Banner'
 import Categories from '../components/category/Categories'
 import TopBrands from '../components/brand/TopBrands'
-import Products from '../components/product/Products'
+import ProductList from '../components/product/ProductList'
 
-interface Props {}
-
-function Home(props: Props) {
-    const {} = props
-
+function Home() {
     return (
         <div className='px-5 lg:px-20 xl:px-40 2xl:px-52'>
             <div className='py-5 flex items-start'>
@@ -18,7 +14,7 @@ function Home(props: Props) {
                 </div>
                 <Categories />
             </div>
-            <Products />
+            <ProductList />
         </div>
     )
 }

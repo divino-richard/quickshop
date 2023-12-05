@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface Props {}
-
-function AuthNav(props: Props) {
-    const {} = props
+function AuthNav() {
 
     return (
         <div className='flex items-center text-white'>

@@ -6,11 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
 import { router } from 'expo-router';
 
-interface Props {}
-
-function SearchProduct(props: Props) {
-    const {} = props
-
+function SearchProduct() {
     return (
         <View style={styles.container}>
             <View style={styles.searchBar}>

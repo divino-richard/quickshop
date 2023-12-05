@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
@@ -8,7 +7,7 @@ import Header from "./components/header/Header";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import Product from "./pages/UserProduct";
+import Product from "./pages/Product";
 import Category from "./pages/Category";
 
 interface PrivateRouteProps {

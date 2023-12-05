@@ -1,11 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-interface Props {}
-
-function Login(props: Props) {
-    const {} = props
-
+function Login() {
     return (
         <View style={styles.container}>
             

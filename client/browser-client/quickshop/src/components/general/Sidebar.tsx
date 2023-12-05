@@ -1,18 +1,13 @@
-import React, { ReactNode } from 'react'
-import Logo from './Logo'
 import SideNav from './SideNav';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-
-interface Props {}
 
 export interface SideNavItem {
     title: string;
     link: string;
 }
 
-function Sidebar(props: Props) {
-    const {} = props
+function Sidebar() {
     const userSession = useSelector((state: RootState) => state.authentication);
     const userRole = userSession.session.data?.role;
 

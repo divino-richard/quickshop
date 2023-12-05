@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
-import { getProducts } from '../../services/product';
+import productService from '../../services/product';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { getProductsFailed, gotProducts } from '../../redux/slice/product/products.slice';
 import { Product } from '../../types/poduct.type';
 import { AxiosError } from 'axios';
-
-interface Props {}
 
 export interface ProductInfo {
     title: string;
@@ -20,9 +18,7 @@ export interface Pagination {
     offset: number;
 }
 
-function Products(props: Props) {
-    const {} = props
-
+function Products() {
     const dispatch = useDispatch<AppDispatch>();
     const productsState = useSelector((state: RootState) => state.products);
 
@@ -32,7 +28,7 @@ function Products(props: Props) {
     });
 
     const handleGetProducts = () => {
-        getProducts(pagination)
+        productService.getProducts(pagination)
             .then((response) => {
                 const products: Product[] = response.data.products;
                 dispatch(gotProducts(products));

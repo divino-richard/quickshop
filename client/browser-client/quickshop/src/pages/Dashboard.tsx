@@ -1,11 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/general/Sidebar'
 
-interface Props {}
-
-function Dashboard(props: Props) {
-    const {} = props
-
+function Dashboard() {
     return (
         <div className='flex'>
             <Sidebar />

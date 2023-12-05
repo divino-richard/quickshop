@@ -2,16 +2,12 @@ import React from 'react'
 import BrandCard from './BrandCard';
 import Divider from '../general/Divider';
 
-interface Props {}
-
 export interface Brand {
     title: string;
     description: string;
 }
 
-function TopBrands(props: Props) {
-    const {} = props
-
+function TopBrands() {
     const topBrands: Brand[] | null = [
         {
             title: "Brand one",

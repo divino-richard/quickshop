@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ProductModel } from "../model/productModel";
 import fs from 'fs';
 import { ROOT_DIR } from "../../server";
+import mongoose from "mongoose";
 const API_END_POINT = 'http://localhost:5000';
 
 const product = {
@@ -161,6 +162,14 @@ const product = {
     delete: async (req: Request, res: Response) => {
         try {
             const {id} = req.params;
+
+            if (!mongoose.isValidObjectId(id)) {
+                return res.status(400).send({
+                    error: {
+                        message: 'Invalid product id',
+                    }
+                })
+            }
 
             const foundProduct = await ProductModel.findById(id);
             if(!foundProduct) {

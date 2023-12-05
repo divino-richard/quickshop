@@ -9,10 +9,7 @@ import { categoryService } from '../services/category';
 import { AxiosError } from 'axios';
 import { Category } from '../types/category.types';
 
-interface Props {}
-
-function CategoryPage(props: Props) {
-    const {} = props
+function CategoryPage() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [openModal, setOpenModal] = useState(false);

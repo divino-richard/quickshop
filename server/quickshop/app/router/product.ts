@@ -10,17 +10,17 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, `${ROOT_DIR}/uploads/products`);
+        cb(null, `${ROOT_DIR}/uploads/products`);
     },
     filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      const splitedName = file.originalname.split('.');
-      const fileExtension = splitedName[splitedName.length-1];
-      const newFileName = 'product' + '-' + uniqueSuffix + '.' + fileExtension;
-      cb(null, newFileName);
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        const splitedName = file.originalname.split('.');
+        const fileExtension = splitedName[splitedName.length-1];
+        const newFileName = 'product' + '-' + uniqueSuffix + '.' + fileExtension;
+        cb(null, newFileName);
     }
 })
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage });
 
 router.get('/all/:_limits/:_offset',
     (req: Request, res: Response) => {
@@ -49,7 +49,7 @@ router.get('/review/:id',
 
 router.post('/',
     authorization(['SELLER', 'ADMIN']),
-    upload.array('product_images', 1),
+    upload.array('product_images'),
     productValidator,
     (req: Request, res: Response) => {
 
@@ -58,7 +58,7 @@ router.post('/',
 
 router.put('/:id',
     authorization(['SELLER', 'ADMIN']),
-    upload.array('product_images', 1),
+    upload.array('product_images', 10),
     productValidator,
     (req: Request, res: Response) => {
 

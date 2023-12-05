@@ -6,10 +6,12 @@ interface Credentials {
     password: string;
 }
 
+const jsonApiClient = apiClient('application/json');
+
 export function loginUser(data: Credentials) {
     return new Promise<AxiosResponse>(async(resolve, reject) => {
         try {
-            const response = await apiClient.post(`/auth/signin`, data);
+            const response = await jsonApiClient.post(`/auth/signin`, data);
             resolve(response);
         } catch (error) {
             console.log("AxiosRequestError: ", error);

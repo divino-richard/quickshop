@@ -1,14 +1,10 @@
 import React, { FormEvent, useEffect } from 'react'
 import Input from '../components/general/Input';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../redux/store';
 import { useNavigate } from 'react-router-dom';
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
 
-interface Props {}
-
-function SignUp(props: Props) {
-    const {} = props
-
+function SignUp() {
     // const dispatch = useDispatch<AppDispatch>();
     const authState = useSelector((state: RootState) => state.authentication);
     const navigate = useNavigate();

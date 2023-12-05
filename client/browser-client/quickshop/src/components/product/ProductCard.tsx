@@ -1,5 +1,6 @@
 import React from 'react'
 import { Product } from '../../types/poduct.type'
+import { API_END_POINT } from '../../constant/api.constant'
 
 interface Props {
     product: Product
@@ -14,7 +15,7 @@ function ProductCard (props: Props) {
                 product.images && (
                     <img 
                         className="w-full h-44 bg-gray-100" 
-                        src={`http://localhost:5000/uploads/products/${product.images[0]}`} 
+                        src={`${API_END_POINT}/uploads/products/${product.images[0]}`} 
                         alt="product"
                     />
                 )

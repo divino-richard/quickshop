@@ -5,14 +5,16 @@ interface ProductsState {
   products: Product[] | null;
   error: {
     message: string | null;
-  }
+  },
+  loading: boolean;
 }
 
 const initialState: ProductsState = {
   products: null,
   error: {
-    message: null
+    message: null,
   },
+  loading: false,
 };
 
 const productsSlice = createSlice({
@@ -24,7 +26,7 @@ const productsSlice = createSlice({
     },
     getProductsFailed(state: ProductsState, action: PayloadAction<string>) {
       state.error.message = action.payload;
-    }
+    },
   },
 });
 

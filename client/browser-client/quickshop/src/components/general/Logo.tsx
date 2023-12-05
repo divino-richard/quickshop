@@ -1,10 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-interface Props {}
-
-function Logo(props: Props) {
-    const {} = props
+function Logo() {
     const navigate = useNavigate();
     return (
         <div className='cursor-pointer' onClick={() => navigate('/')}>

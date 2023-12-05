@@ -5,11 +5,7 @@ import HeaderAccount from './HeaderAccount'
 import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
 
-interface Props {}
-
-function Header(props: Props) {
-    const {} = props
-
+function Header() {
     const authState = useSelector((state: RootState) => state.authentication);
 
     return (
